@@ -1,0 +1,297 @@
+{
+	"info": {
+		"_postman_id": "5e48c9e5-efaf-4f24-acab-9bc193934089",
+		"name": "Appkesmas API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "puskesmas-list-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "puskesmas-add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "KEC. KEP. SERIBU UTARA/RBKEL PULAU PANGGANG",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Kec. Kep. Seribu Utara",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/puskesmas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"puskesmas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "puskesmas-edit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "KEL. CIGANJUR",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Jl. Moh. Kahfi RT 009 (STATUS KONTRAK BANGUNAN)",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/puskesmas/0e4669d32a414b0884ea9d3e5bf5a631",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"puskesmas",
+						"0e4669d32a414b0884ea9d3e5bf5a631"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "KEL. CIGANJUR",
+							"disabled": true
+						},
+						{
+							"key": "address",
+							"value": "Jl. Moh. Kahfi RT 009 (STATUS KONTRAK BANGUNAN)",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "puskesmas-delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/puskesmas/22155e585b4b4405a3f58eb2737d34c9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"puskesmas",
+						"22155e585b4b4405a3f58eb2737d34c9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-list-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_puskesmas",
+							"value": "0e4669d32a414b0884ea9d3e5bf5a631",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Firza",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Benhil",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "087770581462",
+							"type": "text"
+						},
+						{
+							"key": "bpjs_number",
+							"value": "00019292712",
+							"type": "text"
+						},
+						{
+							"key": "identity_number",
+							"value": "3271060206980011",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "Laki-laki",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "22",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-edit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_puskesmas",
+							"value": "0e4669d32a414b0884ea9d3e5bf5a631",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "putra",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "jakarta",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "087770581426",
+							"type": "text"
+						},
+						{
+							"key": "bpjs_number",
+							"value": "00017262512",
+							"type": "text"
+						},
+						{
+							"key": "identity_number",
+							"value": "3271060206980011",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "Laki-laki",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "22",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/38c1bfba95554e2b90a2fa871104ced8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"38c1bfba95554e2b90a2fa871104ced8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/user/c0f1e9e1ac444873ba563f0d45d89a29",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"c0f1e9e1ac444873ba563f0d45d89a29"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

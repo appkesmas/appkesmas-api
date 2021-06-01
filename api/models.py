@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 import uuid
 
 # Create your models here.
@@ -22,7 +24,7 @@ class Hospital(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
-    latiude = models.FloatField()
+    latitude = models.FloatField()
     longitude = models.FloatField()
 
 class Treatment(models.Model):
@@ -31,8 +33,8 @@ class Treatment(models.Model):
     hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE)
     doctor_name = models.CharField(max_length=100)
     jenis_pengobatan = models.CharField(max_length=30)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    start_time = models.DateTimeField(null=True, blank=True, default=timezone.now)
+    end_time = models.DateTimeField(null=True, blank=True)
 
 class CovidData(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

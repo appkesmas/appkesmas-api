@@ -1,8 +1,11 @@
 from django.http import HttpResponse
 from django.views import View
 from django.http.multipartparser import MultiPartParser
+
 from . import models
+
 import json
+import datetime
 
 # Create your views here.
 class PuskesmasView(View):
@@ -161,18 +164,119 @@ class UserDetailView(View):
 
         return HttpResponse(json.dumps(data))
 
-# class HospitalView(View):
-#     def get(self, request):
-#     def post(self, request):
+class HospitalView(View):
+    def get(self, request):
+        hospital = models.Hospital.objects.all().values("id", "name", "address", "latitude", "longitude")
+        hospital = list(hospital)
 
-# class HospitalDetailView(View):
-#     def get(self, request):
-#     def put(self, request):
-#     def delete(self, request):
+        for index in range(len(hospital)):
+            hospital[index]["id"] = str(hospital[index]["id"].hex)
 
-# class TreatmentView(View):
-#     def get(self, request):
-#     def post(self, request):
+        data = list(hospital)
+        return HttpResponse(json.dumps(data))
+    
+    def post(self, request):
+        hospital = models.Hospital()
+
+        # get puskesmas object
+        hospital.name = request.POST.get("name")
+        hospital.address = request.POST.get("address")
+        hospital.latitude = request.POST.get("latitude")
+        hospital.longitude = request.POST.get("longitude")
+        hospital.save()
+
+        data = {
+            "status": "success",
+            "message": "Berhasil menambahkan data rumah sakit"
+        }
+
+        return HttpResponse(json.dumps(data))
+
+class HospitalDetailView(View):
+    def get(self, request, id_hospital):
+
+        try:
+            hospital = models.Hospital.objects.get(pk=id_hospital)
+        except:
+            data = {}
+            return HttpResponse(json.dumps(data))
+
+        data = {
+            "status": "success",
+            "data": {
+                "id": hospital.id.hex,
+                "name": hospital.name,
+                "address": hospital.address,
+                "latitude": hospital.latitude,
+                "longitude": hospital.longitude
+            }
+        }
+
+        return HttpResponse(json.dumps(data))
+    
+    def put(self, request, id_hospital):
+        req = MultiPartParser(request.META, request, request.upload_handlers).parse()[0]
+        
+        hospital = models.Hospital.objects.get(pk=id_hospital)
+        hospital.name = req.get("name")
+        hospital.address = req.get("address")
+        hospital.latitude = req.get("latitude")
+        hospital.longitude = req.get("longitude")
+        hospital.save()
+
+        data = {
+            "status": "success",
+            "message": "Berhasil menambahkan data puskesmas"
+        }
+
+        return HttpResponse(json.dumps(data))
+
+    def delete(self, request, id_hospital):
+        try:
+            hospital = models.Hospital.objects.get(pk=id_hospital)
+            hospital.delete()
+        except:
+            data = {}
+            return HttpResponse(json.dumps(data))
+
+        data = {
+            "status": "success",
+            "message": "Berhasil menghapus data rumah sakit"
+        }
+
+        return HttpResponse(json.dumps(data))
+
+class TreatmentView(View):
+    def get(self, request):
+        treatment = models.Treatment.objects.all().values("id", "doctor_name", "jenis_pengobatan", "start_time", "end_time", "hospital_id", "user_id")
+        treatment = list(treatment)
+
+        for index in range(len(treatment)):
+            treatment[index]["id"] = str(treatment[index]["id"].hex)
+
+        data = list(treatment)
+        return HttpResponse(json.dumps(data))
+
+    def post(self, request):
+        treatment = models.Treatment()
+
+        # get puskesmas object
+        treatment.name = request.POST.get("name")
+        treatment.doctor_name = request.POST.get("doctor_name")
+        treatment.jenis_pengobatan = request.POST.get("jenis_pengobatan")
+        treatment.start_time = datetime.datetime.now()
+        treatment.end_time = ""
+        treatment.hospital_id = request.POST.get("hospital_id")
+        treatment.user_id = request.POST.get("user_id")
+        treatment.save()
+
+        data = {
+            "status": "success",
+            "message": "Berhasil menambahkan data puskesmas"
+        }
+
+        return HttpResponse(json.dumps(data))
+
 
 # class TreatmentDetailView(View):
 #     def get(self, request):
