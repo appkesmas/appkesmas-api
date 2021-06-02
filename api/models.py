@@ -30,7 +30,7 @@ class Hospital(models.Model):
     category = models.CharField(max_length=100, blank=True, null=True)
     class_type = models.CharField(max_length=1, default="Z")
     bed_availability = models.IntegerField(default=0)
-    image_name = models.CharField(max_length=200)
+    image_name = models.CharField(max_length=200, default="default.img")
 
 class Treatment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
