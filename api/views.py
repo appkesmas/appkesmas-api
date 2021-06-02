@@ -166,7 +166,7 @@ class UserDetailView(View):
 
 class HospitalView(View):
     def get(self, request):
-        hospital = models.Hospital.objects.all().values("id", "name", "address", "latitude", "longitude")
+        hospital = models.Hospital.objects.all().values("id", "name", "address", "latitude", "longitude", "area", "category", "class_type", "bed_availability", "image_name")
         hospital = list(hospital)
 
         for index in range(len(hospital)):
@@ -183,6 +183,11 @@ class HospitalView(View):
         hospital.address = request.POST.get("address")
         hospital.latitude = request.POST.get("latitude")
         hospital.longitude = request.POST.get("longitude")
+        hospital.area = request.POST.get("area")
+        hospital.category = request.POST.get("category")
+        hospital.class_type = request.POST.get("class_type")
+        hospital.bed_availability = request.POST.get("bed_availability")
+        hospital.image_name = request.POST.get("image_name")
         hospital.save()
 
         data = {
@@ -207,7 +212,12 @@ class HospitalDetailView(View):
                 "name": hospital.name,
                 "address": hospital.address,
                 "latitude": hospital.latitude,
-                "longitude": hospital.longitude
+                "longitude": hospital.longitude,
+                "area": hospital.area,
+                "category": hospital.category,
+                "class_type": hospital.class_type,
+                "bed_availability": hospital.bed_availability,
+                "image_name": hospital.image_name
             }
         }
 
@@ -221,6 +231,11 @@ class HospitalDetailView(View):
         hospital.address = req.get("address")
         hospital.latitude = req.get("latitude")
         hospital.longitude = req.get("longitude")
+        hospital.area = req.get("area")
+        hospital.category = req.get("category")
+        hospital.class_type = req.get("class_type")
+        hospital.bed_availability = req.get("bed_availability")
+        hospital.image_name = req.get("image_name")
         hospital.save()
 
         data = {
