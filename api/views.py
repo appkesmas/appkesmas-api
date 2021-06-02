@@ -194,7 +194,6 @@ class HospitalView(View):
 
 class HospitalDetailView(View):
     def get(self, request, id_hospital):
-
         try:
             hospital = models.Hospital.objects.get(pk=id_hospital)
         except:
@@ -253,6 +252,10 @@ class TreatmentView(View):
 
         for index in range(len(treatment)):
             treatment[index]["id"] = str(treatment[index]["id"].hex)
+            treatment[index]["user_id"] = str(treatment[index]["user_id"].hex)
+            treatment[index]["hospital_id"] = str(treatment[index]["hospital_id"].hex)
+            treatment[index]["start_time"] = str(treatment[index]["start_time"])
+            treatment[index]["end_time"] = str(treatment[index]["end_time"])
 
         data = list(treatment)
         return HttpResponse(json.dumps(data))
@@ -261,31 +264,109 @@ class TreatmentView(View):
         treatment = models.Treatment()
 
         # get puskesmas object
-        treatment.name = request.POST.get("name")
+        user_id = request.POST.get("user_id")
+        user = models.User.objects.get(pk=user_id)
+
+        treatment.user = user
         treatment.doctor_name = request.POST.get("doctor_name")
         treatment.jenis_pengobatan = request.POST.get("jenis_pengobatan")
-        treatment.start_time = datetime.datetime.now()
-        treatment.end_time = ""
         treatment.hospital_id = request.POST.get("hospital_id")
-        treatment.user_id = request.POST.get("user_id")
         treatment.save()
 
         data = {
             "status": "success",
-            "message": "Berhasil menambahkan data puskesmas"
+            "message": "Berhasil menambahkan data treatment"
         }
 
         return HttpResponse(json.dumps(data))
 
 
-# class TreatmentDetailView(View):
-#     def get(self, request):
-#     def put(self, request):
-#     def delete(self, request):
+class TreatmentDetailView(View):
+    def get(self, request, id_treatment):
+        try:
+            treatment = models.Treatment.objects.get(pk=id_treatment)
+        except:
+            data = {}
+            return HttpResponse(json.dumps(data))
 
-# class covidView(View):
-#     def get(self, request):
-#     def post(self, request):
+        data = {
+            "status": "success",
+            "data": {
+                "id": treatment.id.hex,
+                "doctor_name": treatment.doctor_name,
+                "jenis_pengobatan": treatment.jenis_pengobatan,
+                "start_time": str(treatment.start_time),
+                "end_time": str(treatment.end_time),
+                "hospital_id": treatment.hospital_id.hex,
+                "user_id": treatment.user_id.hex
+            }
+        }
+
+        return HttpResponse(json.dumps(data))
+
+    def put(self, request):
+        req = MultiPartParser(request.META, request, request.upload_handlers).parse()[0]
+        
+        treatment = models.Treatment.objects.get(pk=id_treatment)
+
+        user_id = req.get("user_id")
+        user = models.User.objects.get(pk=user_id)
+
+        treatment.user = user
+        treatment.doctor_name = req.get("doctor_name")
+        treatment.jenis_pengobatan = req.get("jenis_pengobatan")
+        treatment.start_time = req.get("start_time")
+        treatment.end_time = req.get("end_time")
+        treatment.save()
+
+        data = {
+            "status": "success",
+            "message": "Berhasil mengubah data treatment"
+        }
+
+        return HttpResponse(json.dumps(data))
+    
+    def delete(self, request, id_treatment):
+        try:
+            treatment = models.Treatment.objects.get(pk=id_treatment)
+            treatment.delete()
+        except:
+            data = {}
+            return HttpResponse(json.dumps(data))
+
+        data = {
+            "status": "success",
+            "message": "Berhasil menghapus data treatment"
+        }
+
+        return HttpResponse(json.dumps(data))
+
+class CovidDataView(View):
+    def get(self, request):
+        covid_data = models.CovidData.objects.all().values("id", "date", "cases", "recovered", "death")
+        covid_data = list(covid_data)
+
+        for index in range(len(covid_data)):
+            covid_data[index]["id"] = str(covid_data[index]["id"].hex)
+            covid_data[index]["date"] = str(covid_data[index]["date"])
+
+        data = list(covid_data)
+        return HttpResponse(json.dumps(data))
+
+    def post(self, request):
+        covid_data = models.CovidData()
+
+        covid_data.cases = request.POST.get("cases")
+        covid_data.recovered = request.POST.get("recovered")
+        covid_data.death = request.POST.get("death")
+        covid_data.save()
+
+        data = {
+            "status": "success",
+            "message": "Berhasil menambahkan data covid"
+        }
+
+        return HttpResponse(json.dumps(data))
 
 # class CovidDetailView(View):
 #     def get(self, request):

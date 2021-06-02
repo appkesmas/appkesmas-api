@@ -26,6 +26,10 @@ class Hospital(models.Model):
     address = models.CharField(max_length=200)
     latitude = models.FloatField()
     longitude = models.FloatField()
+    area = models.CharField(max_length=100, blank=True, null=True)
+    category = models.CharField(max_length=100, blank=True, null=True)
+    class_type = models.CharField(max_length=1, default="Z")
+    bed_availability = models.IntegerField(default=0)
 
 class Treatment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -38,7 +42,7 @@ class Treatment(models.Model):
 
 class CovidData(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    date = models.DateField()
+    date = models.DateField(default=timezone.now)
     cases = models.IntegerField(default=0)
     recovered = models.IntegerField(default=0)
     death = models.IntegerField(default=0)
