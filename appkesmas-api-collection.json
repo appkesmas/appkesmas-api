@@ -10,16 +10,27 @@
 			"item": [
 				{
 					"name": "puskesmas-list-all",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/puskesmas/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/puskesmas/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"puskesmas",
@@ -50,12 +61,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/puskesmas/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/puskesmas/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"puskesmas",
@@ -86,12 +97,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/puskesmas/0e4669d32a414b0884ea9d3e5bf5a631",
+							"raw": "http://{{host_address}}:{{host_port}}/api/puskesmas/0e4669d32a414b0884ea9d3e5bf5a631",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"puskesmas",
@@ -119,12 +130,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/puskesmas/22155e585b4b4405a3f58eb2737d34c9",
+							"raw": "http://{{host_address}}:{{host_port}}/api/puskesmas/22155e585b4b4405a3f58eb2737d34c9",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"puskesmas",
@@ -145,12 +156,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/user/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/user/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"user",
@@ -170,32 +181,32 @@
 							"formdata": [
 								{
 									"key": "id_puskesmas",
-									"value": "7a2e238f9308488b9fe06786d7e900d2",
+									"value": "8de76ece81fa4541b678894953eb19ff",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "Firza",
+									"value": "Maul",
 									"type": "text"
 								},
 								{
 									"key": "address",
-									"value": "Benhil",
+									"value": "Semarang",
 									"type": "text"
 								},
 								{
 									"key": "phone_number",
-									"value": "087770581462",
+									"value": "081273625127",
 									"type": "text"
 								},
 								{
 									"key": "bpjs_number",
-									"value": "00019292712",
+									"value": "00019212212",
 									"type": "text"
 								},
 								{
 									"key": "identity_number",
-									"value": "3271060206980011",
+									"value": "3271040304950011",
 									"type": "text"
 								},
 								{
@@ -205,18 +216,18 @@
 								},
 								{
 									"key": "age",
-									"value": "22",
+									"value": "27",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/user/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/user/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"user",
@@ -232,12 +243,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/user/c0f1e9e1ac444873ba563f0d45d89a29",
+							"raw": "http://{{host_address}}:{{host_port}}/api/user/c0f1e9e1ac444873ba563f0d45d89a29",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"user",
@@ -298,12 +309,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/user/38c1bfba95554e2b90a2fa871104ced8",
+							"raw": "http://{{host_address}}:{{host_port}}/api/user/38c1bfba95554e2b90a2fa871104ced8",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"user",
@@ -324,12 +335,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/hospital/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/hospital/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"hospital",
@@ -349,7 +360,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "RSUD Kota Bogor",
+									"value": "RSUD Kota Jakarta Barat",
 									"type": "text"
 								},
 								{
@@ -369,37 +380,38 @@
 								},
 								{
 									"key": "area",
-									"value": "Bogor Tengah",
-									"type": "text",
-									"disabled": true
+									"value": "Jakarta Barat",
+									"type": "text"
 								},
 								{
 									"key": "category",
-									"value": "",
-									"type": "text",
-									"disabled": true
+									"value": "Rumah Sakit Umum",
+									"type": "text"
 								},
 								{
 									"key": "class_type",
-									"value": "",
-									"type": "text",
-									"disabled": true
+									"value": "A",
+									"type": "text"
 								},
 								{
 									"key": "bed_availability",
-									"value": "",
-									"type": "text",
-									"disabled": true
+									"value": "56",
+									"type": "text"
+								},
+								{
+									"key": "image_name",
+									"value": "default.jpeg",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/hospital/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/hospital/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"hospital",
@@ -443,16 +455,23 @@
 			"item": [
 				{
 					"name": "treatment-list-all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/treatment/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/treatment/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"treatment",
@@ -472,12 +491,13 @@
 							"formdata": [
 								{
 									"key": "id_user",
-									"value": "46cd24efbb4046be9538280d04c3db4b",
-									"type": "text"
+									"value": "fc70bef6c8b146c5843eccc81fe3b4a5",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "doctor_name",
-									"value": "putra",
+									"value": "adhim",
 									"type": "text"
 								},
 								{
@@ -486,24 +506,29 @@
 									"type": "text"
 								},
 								{
-									"key": "hospital_id",
-									"value": "f116ea843ada494cb8a641c5674dec28",
+									"key": "puskesmas_id",
+									"value": "8de76ece81fa4541b678894953eb19ff",
 									"type": "text"
 								},
 								{
 									"key": "user_id",
-									"value": "46cd24efbb4046be9538280d04c3db4b",
+									"value": "fc70bef6c8b146c5843eccc81fe3b4a5",
+									"type": "text"
+								},
+								{
+									"key": "prediction_time",
+									"value": "21",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/treatment/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/treatment/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"treatment",
@@ -527,7 +552,19 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "http://{{host_address}}:{{host_port}}/api/treatment/2b071a6e7e404102ba5c5feb16f2fc1f",
+							"protocol": "http",
+							"host": [
+								"{{host_address}}"
+							],
+							"port": "{{host_port}}",
+							"path": [
+								"api",
+								"treatment",
+								"2b071a6e7e404102ba5c5feb16f2fc1f"
+							]
+						}
 					},
 					"response": []
 				},
@@ -537,16 +574,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/treatment/2b071a6e7e404102ba5c5feb16f2fc1f",
+							"raw": "http://{{host_address}}:{{host_port}}/api/treatment/121ae735b9764758a6f037b732de23a9",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"treatment",
-								"2b071a6e7e404102ba5c5feb16f2fc1f"
+								"121ae735b9764758a6f037b732de23a9"
 							]
 						}
 					},
@@ -563,12 +600,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/covid-data/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/covid-data/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"covid-data",
@@ -610,12 +647,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/covid-data/",
+							"raw": "http://{{host_address}}:{{host_port}}/api/covid-data/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{host_address}}"
 							],
-							"port": "8000",
+							"port": "{{host_port}}",
 							"path": [
 								"api",
 								"covid-data",
@@ -653,6 +690,36 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host_address",
+			"value": "104.198.135.120"
+		},
+		{
+			"key": "host_port",
+			"value": "8000"
 		}
 	]
 }

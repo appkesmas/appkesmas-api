@@ -36,11 +36,14 @@ class Treatment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     puskesmas = models.ForeignKey(Puskesmas, on_delete=models.CASCADE)
-    doctor_name = models.CharField(max_length=100)
-    jenis_pengobatan = models.CharField(max_length=30)
+    doctor_name = models.CharField(max_length=100, default="-")
+    jenis_pengobatan = models.CharField(max_length=30, default="-")
     start_time = models.DateTimeField(null=True, blank=True, default=timezone.now)
     end_time = models.DateTimeField(null=True, blank=True)
     prediction_time = models.IntegerField(default=0)
+    painscale = models.IntegerField(default=1) # 1=painless, 2=pain, 3=very-pain
+    immediacy = models.IntegerField(default=5) # 1=immediate, 2=emergent, 3=urgent, 4=semi-urgent, 5=nonurgent
+    temperature = models.IntegerField(default=1) # 1=normal, #warm
 
 class CovidData(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

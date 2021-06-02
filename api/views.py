@@ -2,10 +2,14 @@ from django.http import HttpResponse
 from django.views import View
 from django.http.multipartparser import MultiPartParser
 
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score
+
 from . import models
 
 import json
 import datetime
+import pickle
 
 # Create your views here.
 class PuskesmasView(View):
@@ -165,12 +169,15 @@ class UserDetailView(View):
         return HttpResponse(json.dumps(data))
 
 class HospitalView(View):
+
+
     def get(self, request):
         hospital = models.Hospital.objects.all().values("id", "name", "address", "latitude", "longitude", "area", "category", "class_type", "bed_availability", "image_name")
         hospital = list(hospital)
 
         for index in range(len(hospital)):
             hospital[index]["id"] = str(hospital[index]["id"].hex)
+            hospital[index]
 
         data = list(hospital)
         return HttpResponse(json.dumps(data))
@@ -205,6 +212,8 @@ class HospitalDetailView(View):
             data = {}
             return HttpResponse(json.dumps(data))
 
+        image_url = hospital.image_name
+
         data = {
             "status": "success",
             "data": {
@@ -217,7 +226,7 @@ class HospitalDetailView(View):
                 "category": hospital.category,
                 "class_type": hospital.class_type,
                 "bed_availability": hospital.bed_availability,
-                "image_name": hospital.image_name
+                "image_url": image_url
             }
         }
 
@@ -261,6 +270,37 @@ class HospitalDetailView(View):
         return HttpResponse(json.dumps(data))
 
 class TreatmentView(View):
+    def getCategoryAge(self, age):
+        if age < 15:
+            return 1 
+        elif age >= 15 and age < 25:
+            return 2
+        elif age >=25 and age < 45:
+            return 3
+        elif age >= 45 and age < 65:
+            return 4
+        elif age >= 65 and age < 75:
+            return 5
+        elif age >= 75:
+            return 6
+
+    def getCategorySex(self, sex):
+        if sex == "Perempuan":
+            return 1
+        elif sex == "Laki-laki":
+            return 2
+
+    def getPredictionTime(self, sex, age, immediacy, painscale, temperature):
+        filename = 'lib/appkesmasML/weight_model_waittime'
+        load_model = pickle.load(open(filename,'rb'))
+
+        category_age = getCategoryAge(age)
+        category_sex = getCategorySex
+
+        prediction_result = load_model.predict([[ category_sex, category_age, immediacy, painscale, temperature ]]) 
+
+        return prediction_result
+
     def get(self, request):
         treatment = models.Treatment.objects.all().values("id", "doctor_name", "jenis_pengobatan", "start_time", "end_time", "puskesmas_id", "user_id")
         treatment = list(treatment)
@@ -283,10 +323,14 @@ class TreatmentView(View):
         user = models.User.objects.get(pk=user_id)
 
         treatment.user = user
-        treatment.doctor_name = request.POST.get("doctor_name")
-        treatment.jenis_pengobatan = request.POST.get("jenis_pengobatan")
+        # treatment.doctor_name = request.POST.get("doctor_name")
+        # treatment.jenis_pengobatan = request.POST.get("jenis_pengobatan")
         treatment.puskesmas_id = request.POST.get("puskesmas_id")
-        treatment.prediction_time = request.POST.get("prediction_time")
+        painscale = request.POST.get("painscale")
+        immediacy = request.POST.get("immediacy")
+        temperature = request.POST.get("temperature")
+        treatment.prediction_time = getPredictionTime(user.sex, user.age, painscale, immediacy, temperature)
+        
         treatment.save()
 
         data = {
@@ -305,6 +349,8 @@ class TreatmentDetailView(View):
             data = {}
             return HttpResponse(json.dumps(data))
 
+        prediction_time = self.getPredictionTime([[ treatment.user.sex, treatment.user.age, treatment.immediacy, treatment.painscale, treatment.temp ]])
+
         data = {
             "status": "success",
             "data": {
@@ -313,6 +359,9 @@ class TreatmentDetailView(View):
                 "jenis_pengobatan": treatment.jenis_pengobatan,
                 "start_time": str(treatment.start_time),
                 "end_time": str(treatment.end_time),
+                "immediacy": treatment.immediacy,
+                "temperature": treatment.temperature,
+                "painscale": treatment.painscale,
                 "prediction_time": treatment.prediction_time,
                 "puskesmas_id": treatment.puskesmas_id.hex,
                 "user_id": treatment.user_id.hex
