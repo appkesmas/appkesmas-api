@@ -294,15 +294,15 @@ class TreatmentView(View):
         filename = 'lib/appkesmasML/weight_model_waittime'
         load_model = pickle.load(open(filename,'rb'))
 
-        category_age = getCategoryAge(age)
-        category_sex = getCategorySex
+        category_age = self.getCategoryAge(age)
+        category_sex = self.getCategorySex(sex)
 
         prediction_result = load_model.predict([[ category_sex, category_age, immediacy, painscale, temperature ]]) 
 
         return prediction_result
 
     def get(self, request):
-        treatment = models.Treatment.objects.all().values("id", "doctor_name", "jenis_pengobatan", "start_time", "end_time", "puskesmas_id", "user_id")
+        treatment = models.Treatment.objects.all().values("id", "start_time", "end_time", "painscale", "immediacy", "temperature", "puskesmas_id", "user_id", "prediction_time")
         treatment = list(treatment)
 
         for index in range(len(treatment)):
@@ -329,7 +329,7 @@ class TreatmentView(View):
         painscale = request.POST.get("painscale")
         immediacy = request.POST.get("immediacy")
         temperature = request.POST.get("temperature")
-        treatment.prediction_time = getPredictionTime(user.sex, user.age, painscale, immediacy, temperature)
+        treatment.prediction_time = self.getPredictionTime(user.sex, user.age, painscale, immediacy, temperature)
         
         treatment.save()
 
@@ -348,8 +348,6 @@ class TreatmentDetailView(View):
         except:
             data = {}
             return HttpResponse(json.dumps(data))
-
-        prediction_time = self.getPredictionTime([[ treatment.user.sex, treatment.user.age, treatment.immediacy, treatment.painscale, treatment.temp ]])
 
         data = {
             "status": "success",
