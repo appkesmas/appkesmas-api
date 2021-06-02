@@ -1,297 +1,658 @@
 {
 	"info": {
-		"_postman_id": "5e48c9e5-efaf-4f24-acab-9bc193934089",
+		"_postman_id": "aa89d341-85dc-463c-af7d-b6170deb865b",
 		"name": "Appkesmas API Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "puskesmas-list-all",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": null
-			},
-			"response": []
-		},
-		{
-			"name": "puskesmas-add",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "KEC. KEP. SERIBU UTARA/RBKEL PULAU PANGGANG",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "Kec. Kep. Seribu Utara",
-							"type": "text"
+			"name": "puskesmas",
+			"item": [
+				{
+					"name": "puskesmas-list-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/puskesmas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"puskesmas",
+								""
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/puskesmas/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"puskesmas",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "puskesmas-edit",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "KEL. CIGANJUR",
-							"type": "text"
+				{
+					"name": "puskesmas-add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "KEC. KEP. SERIBU UTARA/RBKEL PULAU PANGGANG",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Kec. Kep. Seribu Utara",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "address",
-							"value": "Jl. Moh. Kahfi RT 009 (STATUS KONTRAK BANGUNAN)",
-							"type": "text"
+						"url": {
+							"raw": "http://localhost:8000/api/puskesmas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"puskesmas",
+								""
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/puskesmas/0e4669d32a414b0884ea9d3e5bf5a631",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"puskesmas",
-						"0e4669d32a414b0884ea9d3e5bf5a631"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "KEL. CIGANJUR",
-							"disabled": true
+				{
+					"name": "puskesmas-edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "KEL. CIGANJUR",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Jl. Moh. Kahfi RT 009 (STATUS KONTRAK BANGUNAN)",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "address",
-							"value": "Jl. Moh. Kahfi RT 009 (STATUS KONTRAK BANGUNAN)",
-							"disabled": true
+						"url": {
+							"raw": "http://localhost:8000/api/puskesmas/0e4669d32a414b0884ea9d3e5bf5a631",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"puskesmas",
+								"0e4669d32a414b0884ea9d3e5bf5a631"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "KEL. CIGANJUR",
+									"disabled": true
+								},
+								{
+									"key": "address",
+									"value": "Jl. Moh. Kahfi RT 009 (STATUS KONTRAK BANGUNAN)",
+									"disabled": true
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "puskesmas-delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/puskesmas/22155e585b4b4405a3f58eb2737d34c9",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"puskesmas",
-						"22155e585b4b4405a3f58eb2737d34c9"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "user-list-all",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/users/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"users",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "user-add",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id_puskesmas",
-							"value": "0e4669d32a414b0884ea9d3e5bf5a631",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "Firza",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "Benhil",
-							"type": "text"
-						},
-						{
-							"key": "phone_number",
-							"value": "087770581462",
-							"type": "text"
-						},
-						{
-							"key": "bpjs_number",
-							"value": "00019292712",
-							"type": "text"
-						},
-						{
-							"key": "identity_number",
-							"value": "3271060206980011",
-							"type": "text"
-						},
-						{
-							"key": "sex",
-							"value": "Laki-laki",
-							"type": "text"
-						},
-						{
-							"key": "age",
-							"value": "22",
-							"type": "text"
-						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/user/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "user-edit",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "id_puskesmas",
-							"value": "0e4669d32a414b0884ea9d3e5bf5a631",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "putra",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "jakarta",
-							"type": "text"
-						},
-						{
-							"key": "phone_number",
-							"value": "087770581426",
-							"type": "text"
-						},
-						{
-							"key": "bpjs_number",
-							"value": "00017262512",
-							"type": "text"
-						},
-						{
-							"key": "identity_number",
-							"value": "3271060206980011",
-							"type": "text"
-						},
-						{
-							"key": "sex",
-							"value": "Laki-laki",
-							"type": "text"
-						},
-						{
-							"key": "age",
-							"value": "22",
-							"type": "text"
+				{
+					"name": "puskesmas-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/puskesmas/22155e585b4b4405a3f58eb2737d34c9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"puskesmas",
+								"22155e585b4b4405a3f58eb2737d34c9"
+							]
 						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/user/38c1bfba95554e2b90a2fa871104ced8",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"38c1bfba95554e2b90a2fa871104ced8"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "user-delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/user/c0f1e9e1ac444873ba563f0d45d89a29",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						"c0f1e9e1ac444873ba563f0d45d89a29"
-					]
+			"name": "user",
+			"item": [
+				{
+					"name": "user-list-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_puskesmas",
+									"value": "7a2e238f9308488b9fe06786d7e900d2",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Firza",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Benhil",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "087770581462",
+									"type": "text"
+								},
+								{
+									"key": "bpjs_number",
+									"value": "00019292712",
+									"type": "text"
+								},
+								{
+									"key": "identity_number",
+									"value": "3271060206980011",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "Laki-laki",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "22",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/user/c0f1e9e1ac444873ba563f0d45d89a29",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"c0f1e9e1ac444873ba563f0d45d89a29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_puskesmas",
+									"value": "0e4669d32a414b0884ea9d3e5bf5a631",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "putra",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "jakarta",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "087770581426",
+									"type": "text"
+								},
+								{
+									"key": "bpjs_number",
+									"value": "00017262512",
+									"type": "text"
+								},
+								{
+									"key": "identity_number",
+									"value": "3271060206980011",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "Laki-laki",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "22",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/user/38c1bfba95554e2b90a2fa871104ced8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"38c1bfba95554e2b90a2fa871104ced8"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "hospital",
+			"item": [
+				{
+					"name": "hospital-list-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/hospital/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"hospital",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hospital-add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "RSUD Kota Bogor",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Jl. DR. Sumeru No.120, RT.03/RW.20, Menteng, Kec. Bogor Bar., Kota Bogor, Jawa Barat 16112",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "-6.580326372714828",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "106.7781487803747",
+									"type": "text"
+								},
+								{
+									"key": "area",
+									"value": "Bogor Tengah",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "class_type",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bed_availability",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/hospital/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"hospital",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hospital-edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "hospital-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "hospital-detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "treatment",
+			"item": [
+				{
+					"name": "treatment-list-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/treatment/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"treatment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "treatment-add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_user",
+									"value": "46cd24efbb4046be9538280d04c3db4b",
+									"type": "text"
+								},
+								{
+									"key": "doctor_name",
+									"value": "putra",
+									"type": "text"
+								},
+								{
+									"key": "jenis_pengobatan",
+									"value": "inap",
+									"type": "text"
+								},
+								{
+									"key": "hospital_id",
+									"value": "f116ea843ada494cb8a641c5674dec28",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "46cd24efbb4046be9538280d04c3db4b",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/treatment/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"treatment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "treatment-edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "treatment-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "treatment-detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/treatment/2b071a6e7e404102ba5c5feb16f2fc1f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"treatment",
+								"2b071a6e7e404102ba5c5feb16f2fc1f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "covid-data",
+			"item": [
+				{
+					"name": "covid-data-list-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/covid-data/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"covid-data",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "covid-add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "cases",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "recovered",
+									"value": "321",
+									"type": "text"
+								},
+								{
+									"key": "death",
+									"value": "22",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/covid-data/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"covid-data",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "covid-data-edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "covid-data-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "covid-data-detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
