@@ -34,11 +34,12 @@ class Hospital(models.Model):
 class Treatment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE)
+    puskesmas = models.ForeignKey(Puskesmas, on_delete=models.CASCADE)
     doctor_name = models.CharField(max_length=100)
     jenis_pengobatan = models.CharField(max_length=30)
     start_time = models.DateTimeField(null=True, blank=True, default=timezone.now)
     end_time = models.DateTimeField(null=True, blank=True)
+    prediction_time = models.IntegerField(default=0)
 
 class CovidData(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

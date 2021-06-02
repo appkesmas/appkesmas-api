@@ -247,13 +247,13 @@ class HospitalDetailView(View):
 
 class TreatmentView(View):
     def get(self, request):
-        treatment = models.Treatment.objects.all().values("id", "doctor_name", "jenis_pengobatan", "start_time", "end_time", "hospital_id", "user_id")
+        treatment = models.Treatment.objects.all().values("id", "doctor_name", "jenis_pengobatan", "start_time", "end_time", "puskesmas_id", "user_id")
         treatment = list(treatment)
 
         for index in range(len(treatment)):
             treatment[index]["id"] = str(treatment[index]["id"].hex)
             treatment[index]["user_id"] = str(treatment[index]["user_id"].hex)
-            treatment[index]["hospital_id"] = str(treatment[index]["hospital_id"].hex)
+            treatment[index]["puskesmas_id"] = str(treatment[index]["puskesmas_id"].hex)
             treatment[index]["start_time"] = str(treatment[index]["start_time"])
             treatment[index]["end_time"] = str(treatment[index]["end_time"])
 
@@ -270,7 +270,8 @@ class TreatmentView(View):
         treatment.user = user
         treatment.doctor_name = request.POST.get("doctor_name")
         treatment.jenis_pengobatan = request.POST.get("jenis_pengobatan")
-        treatment.hospital_id = request.POST.get("hospital_id")
+        treatment.puskesmas_id = request.POST.get("puskesmas_id")
+        treatment.prediction_time = request.POST.get("prediction_time")
         treatment.save()
 
         data = {
@@ -297,7 +298,8 @@ class TreatmentDetailView(View):
                 "jenis_pengobatan": treatment.jenis_pengobatan,
                 "start_time": str(treatment.start_time),
                 "end_time": str(treatment.end_time),
-                "hospital_id": treatment.hospital_id.hex,
+                "prediction_time": treatment.prediction_time,
+                "puskesmas_id": treatment.puskesmas_id.hex,
                 "user_id": treatment.user_id.hex
             }
         }
@@ -317,6 +319,7 @@ class TreatmentDetailView(View):
         treatment.jenis_pengobatan = req.get("jenis_pengobatan")
         treatment.start_time = req.get("start_time")
         treatment.end_time = req.get("end_time")
+        treatment.prediction_time = req.get("prediction_time")
         treatment.save()
 
         data = {
