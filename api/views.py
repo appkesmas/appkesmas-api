@@ -231,7 +231,10 @@ class HospitalView(View):
         curl_df['Nama RS'] = curl_df['Nama RS'].apply(lambda x: 'RS Ibu dan Anak Avisena' if 'Avisena' in x else x)
 
         combined_df = pd.merge(curl_df,rs_clean_df,on='Nama RS')
-        combined_df = combined_df.set_index('Kode RS')
+
+        hospital_id_as_index = False
+        if hospital_id_as_index:
+                combined_df = combined_df.set_index('Hospital ID')
 
         def calc_distance(row, site_coords):
             station_coords = (row['Latitude'], row['Longitude'])
@@ -266,7 +269,7 @@ class HospitalView(View):
         combined_df = combined_df.sort_values("Rank")
 
 
-        final_features = ['Nama RS', 'Wilayah',
+        final_features = ['Kode RS', 'Nama RS', 'Wilayah',
                        'Total Ketersediaan', 'Ketersediaan ICU Tekanan Negatif Dengan Ventilator',
                        'Ketersediaan ICU Tekanan Negatif Tanpa Ventilator',
                        'Ketersediaan ICU Tanpa Tekanan Negatif dengan Ventilator',
@@ -277,12 +280,19 @@ class HospitalView(View):
                        'Ketersediaan Perina khusus COVID-19',
                        'Ketersediaan PICU khusus COVID-19', 'Ketersediaan OK khusus COVID-19',
                        'Ketersediaan HD khusus COVID-19', 'Hotline SPGDT',
-                       'Jenis RS', 'Kelas', 'Jarak', 'Rank']
+                       'Jenis RS', 'Kelas', 'Jarak', 'Image URL', 'Rank']
 
         count = int(request.GET.get("count"))
-        final_data = combined_df[final_features][:count]
+        if hospital_id_as_index:
+            final_data = combined_df[final_features][:count]
+        else:
+            final_data = combined_df[['Hospital ID']+final_features][:count]
 
-        result = final_data.to_json(orient='index')
+        if hospital_id_as_index:
+            result = final_data.to_json(orient='index')
+        else:
+            result = final_data.to_json(orient='records')
+
         final_data_json = json.loads(result)
     
         return HttpResponse(json.dumps(final_data_json), content_type="application/json")
@@ -424,9 +434,9 @@ class TreatmentView(View):
             return 6
 
     def getCategorySex(self, sex):
-        if sex == "Perempuan":
+        if sex == "Perempuan" or sex == "Female":
             return 1
-        elif sex == "Laki-laki":
+        elif sex == "Laki-laki" or sex == "Male":
             return 2
 
     def getPredictionTime(self, sex, age, immediacy, painscale, temperature):
